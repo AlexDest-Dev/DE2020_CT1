@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="825.0" prefWidth="972.0" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="Infinity" tabMaxWidth="Infinity" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de_task.controller.Controller">
+  <tabs>
+    <Tab text="Methods Charts">
+         <content>
+            <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="100.0" percentWidth="21.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="878.0" minWidth="10.0" percentWidth="79.0" prefWidth="876.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" percentHeight="50.0" prefHeight="412.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" percentHeight="50.0" prefHeight="404.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <VBox prefHeight="440.0" prefWidth="175.0">
+                     <children>
+                        <VBox prefHeight="50.0" prefWidth="100.0">
+                           <children>
+                              <Label text="  x0" />
+                              <TextField fx:id="textX0" />
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="50.0" prefWidth="100.0">
+                           <children>
+                              <Label text="  y0" />
+                              <TextField fx:id="textY0" />
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="50.0" prefWidth="100.0">
+                           <children>
+                              <Label text="  X" />
+                              <TextField fx:id="textX" />
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="50.0" prefWidth="100.0">
+                           <children>
+                              <Label text="  N" />
+                              <TextField fx:id="textN" />
+                           </children>
+                        </VBox>
+                        <Button fx:id="calculate" mnemonicParsing="false" onAction="#buttonClicked" prefHeight="31.0" prefWidth="108.0" text="Calculate" />
+                        <Label text="  Methods Visible" />
+                        <CheckBox fx:id="isAnalyticalVisible" mnemonicParsing="false" text="Analytical Solution" />
+                        <CheckBox fx:id="isEulerVisible" mnemonicParsing="false" text="Euler's Method" />
+                        <CheckBox fx:id="isImprovedVisible" mnemonicParsing="false" text="Improved Euler's Method" />
+                        <CheckBox fx:id="isRungeVisible" mnemonicParsing="false" text="Runge-Kutta Method" />
+                        <Label text="  Errors Visible" />
+                        <CheckBox fx:id="isLTEVisible" mnemonicParsing="false" text="LTE" />
+                        <CheckBox fx:id="isGTEVisible" mnemonicParsing="false" text="GTE" />
+                     </children>
+                  </VBox>
+                  <LineChart fx:id="methodChart" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="397.0" prefWidth="726.0" GridPane.columnIndex="1">
+                    <xAxis>
+                      <NumberAxis label="X" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis label="Y" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" side="LEFT" />
+                    </yAxis>
+                  </LineChart>
+                  <LineChart fx:id="localErrorsChart" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="389.0" prefWidth="874.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <xAxis>
+                      <NumberAxis label="X" side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis label="Errors" side="LEFT" />
+                    </yAxis>
+                  </LineChart>
+               </children>
+            </GridPane>
+         </content>
+    </Tab>
+    <Tab text="Analyzation of Methods ">
+         <content>
+            <GridPane>
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="480.0" minWidth="10.0" percentWidth="21.0" prefWidth="196.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="814.0" minWidth="10.0" percentWidth="79.0" prefWidth="776.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <LineChart fx:id="globalErrorsChart" GridPane.columnIndex="1">
+                    <xAxis>
+                      <NumberAxis label="N" side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis label="Max Errors" side="LEFT" />
+                    </yAxis>
+                  </LineChart>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <VBox prefHeight="50.0" prefWidth="100.0">
+                           <children>
+                              <Label text="  n0" />
+                              <TextField fx:id="textNStart" />
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="50.0" prefWidth="100.0">
+                           <children>
+                              <Label text="  N" />
+                              <TextField fx:id="textNFinish" />
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="50.0" prefWidth="100.0">
+                              <Button fx:id="errorsCalculate" mnemonicParsing="false" onAction="#buttonErrorsClicked" prefHeight="31.0" prefWidth="108.0" text="Calculate" />
+                        </VBox>
+                        <Label text="  Errors Visible" />
+                        <CheckBox fx:id="isEulerErrorsVisible" mnemonicParsing="false" text="Euler's Method" />
+                        <CheckBox fx:id="isImprovedErrorsVisible" mnemonicParsing="false" text="Improved Euler's Method" />
+                        <CheckBox fx:id="isRungeErrorsVisible" mnemonicParsing="false" text="Runge-Kutta Method" />
+                     </children>
+                  </VBox>
+               </children>
+            </GridPane>
+         </content>
+    </Tab>
+  </tabs>
+</TabPane>
