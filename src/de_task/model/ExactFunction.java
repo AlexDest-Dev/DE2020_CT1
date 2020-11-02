@@ -24,6 +24,9 @@ public class ExactFunction implements IFunction<Double> {
     }
 
     private Double calculateConstant(Double x, Double y) {
+        if(initX < 0) {
+            return  -1*sqrt(x*x*y) - sin(x);
+        }
         return sqrt(x*x*y) - sin(x);
     }
 }

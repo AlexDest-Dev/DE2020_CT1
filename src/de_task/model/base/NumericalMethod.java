@@ -33,7 +33,7 @@ public abstract class NumericalMethod extends Grid implements IFunction<Double> 
         mainFunction = new MainFunction();
     }
 
-    private void updateInitValues(Double x0, Double y0, Double X, int N) {
+    public void updateInitValues(Double x0, Double y0, Double X, int N) {
         this.x0 = x0;
         this.y0 = y0;
         this.X = X;

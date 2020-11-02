@@ -5,6 +5,7 @@ import de_task.model.base.NumericalMethod;
 import de_task.model.base.Point;
 import javafx.scene.chart.XYChart;
 
+import java.util.Collections;
 import java.util.List;
 
 import static java.lang.Math.abs;
@@ -17,7 +18,9 @@ public class GlobalTruncationErrors extends Errors {
     public void calculateErrors(NumericalMethod method) {
         this.getErrors().clear();
         List<Point<Double>> methodPoints = method.getGrid();
-        for(int i = 0; i < methodPoints.size(); i++) {
+        //if (method.getX0() < 0) Collections.reverse(methodPoints);
+        this.getErrors().add(new Point<>(methodPoints.get(0).getX(), 0.0));
+        for(int i = 1; i < methodPoints.size(); i++) {
             Double tempX = methodPoints.get(i).getX();
             Double exactY = NumericalMethod.exactFunction.getFunctionResult(tempX);
             Double tempY = methodPoints.get(i).getY();

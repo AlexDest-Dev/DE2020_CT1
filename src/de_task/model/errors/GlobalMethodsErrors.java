@@ -22,7 +22,7 @@ public class GlobalMethodsErrors extends Errors {
         this.getErrors().clear();
         GlobalTruncationErrors localErrors = new GlobalTruncationErrors();
         for (Integer i = this.n0; i <= this.N; i++) {
-            method.getSolution(method.getX0(), method.getY0(), method.getY0(), i);
+            method.getSolution(method.getX0(), method.getY0(), method.getX(), i);
             localErrors.calculateErrors(method);
             List<Point<Double>> tempLocalErrors = localErrors.getErrors();
             Point<Double> maxError = new Point<>(0.0, -1.0);

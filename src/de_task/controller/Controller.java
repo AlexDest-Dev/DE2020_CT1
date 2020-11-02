@@ -94,8 +94,14 @@ public class Controller implements Initializable {
 
     @FXML
     private void buttonErrorsClicked() {
+        x0 = parseInput(textX0.getText());
+        y0 = parseInput(textY0.getText());
+        X = parseInput(textX.getText());
         nStart = Integer.parseInt(textNStart.getText());
         nFinish = Integer.parseInt(textNFinish.getText());
+        eulerMethod.updateInitValues(x0, y0, X, nStart);
+        improvedEulerMethod.updateInitValues(x0, y0, X, nStart);
+        rungeKuttaMethod.updateInitValues(x0, y0, X, nStart);
         globalErrorsChartDrawer();
     }
 
@@ -218,7 +224,7 @@ public class Controller implements Initializable {
         text.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if (newValue.compareTo("") != 0 && !newValue.matches("[0-9]*.[0-9]*[pi]?$")) {
+                if (newValue.compareTo("") != 0 && !newValue.matches("-?[0-9]*.[0-9]*[pi]?$")) {
                     text.setText(oldValue);
                 }
             }
@@ -228,19 +234,23 @@ public class Controller implements Initializable {
     private double parseInput(String text) {
         String number = "";
         boolean isPI = false;
+        boolean isMinus = false;
+        if (text.charAt(0) == '-') isMinus = true;
         for (int i = 0; i < text.length(); i++) {
+            if (isMinus && i == 0) continue;
             if (text.charAt(i) == 'p') {
                 isPI = true;
                 break;
             }
             number += text.charAt(i);
         }
-
+        double minusMultiplier = 1;
+        if (isMinus) minusMultiplier = -1;
         if (isPI) {
-            if (number.compareTo("") == 0) return Math.PI;
-            return Double.parseDouble(number) * Math.PI;
+            if (number.compareTo("") == 0) return minusMultiplier * Math.PI;
+            return minusMultiplier * Double.parseDouble(number) * Math.PI;
         }
-        else return Double.parseDouble(number);
+        else return minusMultiplier * Double.parseDouble(number);
     }
 }
 
